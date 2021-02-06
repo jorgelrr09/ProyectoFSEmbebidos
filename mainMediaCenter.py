@@ -11,7 +11,6 @@
 import vlc
 import time
 import glob
-#<<<<<<< HEAD
 import webbrowser
 
 tiempoPorSlide = 4
@@ -28,20 +27,6 @@ def reproducirFotos(mymedia,tiempo):
         time.sleep(tiempo)#el tiempo de reproduccion de las fotos, videos o musica
 #Media.close()#IMPORTANTE, debe cerrarse el reproductor
 
-tiempoPorSlide = 4
-def reproducirFotos(mymedia,tiempo):
-	#instancia del reproductor
-	vlc_instance = vlc.Instance()
-	player = vlc_instance.media_list_player_new()#funcion para hacer slideshow
-	Media = vlc_instance.media_list_new(mymedia)
-	player.set_media_list(Media)
-
-	#cada elemento de la lista se reproduce en pantalla por 4 segundos
-	for index, name in enumerate(mymedia):
-	    player.play_item_at_index(index)
-	    time.sleep(tiempo)#el tiempo de reproduccion de las fotos, videos o musica
-	#Media.close()#IMPORTANTE, debe cerrarse el reproductor
-
 def reproducirMusicaVideo(file):
     while True:
         for f in file:
@@ -55,8 +40,6 @@ def reproducirMusicaVideo(file):
             time.sleep(duration)
             player.stop()
     player.close()
-#>>>>>>> Thomas
-
 
 def reproducirUSB():
     #se guardan los nombres de los archivos tipo png en una lista
@@ -87,30 +70,6 @@ def reproducirUSB():
     elif not varPhotoFiles and not varVideoFiles:#si no hay archivos de fotos ni musica se cargan videos
         reproducirMusicaVideo(varMusicFiles[0])
 
-#<<<<<<< HEAD
-
-    if((varPhotoFiles and varVideoFiles) or (varPhotoFiles and varMusicFiles) or (varVideoFiles and varMusicFiles)):
-        print("Elige que reproducir:\n1.-Fotos\n2.-Videos\n3.-Musica")
-        opcionReproduccion = input()
-        if opcionReproduccion == '1':
-            print(varPhotoFiles)
-            reproducirFotos(varPhotoFiles,tiempoPorSlide)
-        elif opcionReproduccion == '2':
-            print(len(varVideoFiles))
-            reproducirMusicaVideo(varVideoFiles[0])
-        elif opcionReproduccion == '3':
-            #es olbigatorio poner un indice al llamar la funcion
-            #for x in range(len(varMusicFiles)):
-            #reproducirMusicaVideo(varMusicFiles[x])
-            reproducirMusicaVideo(varMusicFiles[0])
-        elif not varVideoFiles and not varMusicFiles:#si no hay archivos de video se cargan fotos
-            reproducirFotos(varPhotoFiles,tiempoPorSlide)
-        elif not varPhotoFiles and not varMusicFiles:#si no hay archivos de fotos ni musica se cargan videos
-            reproducirMusicaVideo(varVideoFiles[0])
-        elif not varPhotoFiles and not varVideoFiles:#si no hay archivos de fotos ni musica se cargan videos
-            reproducirMusicaVideo(varMusicFiles[0])
-
-
 print("1.- Ver servicio de video online(Netlfix). \n2.- Reproducir musica(Spotify). \n3.- Reproducir contenido en USB")
 opcion = input()
 if opcion == '3':
@@ -123,5 +82,4 @@ else:
     print("Slecciona una opción valida")
     print(opcion)
 
-#=======
-#>>>>>>> Thomas
+
